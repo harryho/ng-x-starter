@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     returnUrl: string;
     error = '';
 
-    @Input() callback: Function;
+    @Input() hasSignined: Function;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.callback(true);
+                    this.hasSignined(true);
                     this.router.navigate([this.returnUrl]);
                     window.document.location.reload();
                 },

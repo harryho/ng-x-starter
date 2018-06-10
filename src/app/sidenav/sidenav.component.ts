@@ -22,7 +22,6 @@ export class SidenavComponent {
 
   constructor(private breakpointObserver: BreakpointObserver,
      private appService: AppService,    private router: Router) {
-
   }
 
   ngOnInit() {
@@ -31,31 +30,14 @@ export class SidenavComponent {
     this.isAuth = this.appService.isAuth();
   }
 
-  ngOnChanges() {
-
-    this.isAuth = this.appService.isAuth();
-  }
-
-  isAuthorized(_ : {isAuth: boolean}): void {
-    // console.log('------------------ (): ', localStorage.getItem('currentUser'))
-    this.isAuth = _.isAuth
-
-  }
-
-  isAuthenticated() {
-    return this.isAuth;
-  }
-
-  setAuth (a : boolean) {
-    this.isAuth = a;
-    console.log('------------------ (): ', localStorage.getItem('currentUser'))
+  hasSignined (signined: boolean) {
+    this.isAuth = signined;
   }
 
   logout(): void {
     this.isAuth = false
     localStorage.removeItem('currentUser');
     this.router.navigate(['login']);
-    this.ngOnChanges();
     window.document.location.reload()
   }
 

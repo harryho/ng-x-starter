@@ -1,7 +1,7 @@
 <div>
   <mat-sidenav-container class="sidenav-container" [hasBackdrop]="(isHandset$ | async) ? true : false">
 
-    <mat-sidenav [hidden]="isAuthenticated()" #drawer class="sidenav" fixedInViewport="true && isAuth" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    <mat-sidenav [hidden]="isAuth" #drawer class="sidenav" fixedInViewport="true && isAuth" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="isAuth && !(isHandset$ | async)">
       <mat-toolbar color="primary">Demo
         <div style="position:absolute; right: 0;">
@@ -25,15 +25,11 @@
                 Page 3
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <a mat-list-item href="#page2" (click)="handleClick(drawer)">Page 3.1</a>
-            <a mat-list-item href="#page2" (click)="handleClick(drawer)">Page 3.2</a>
-            <a mat-list-item href="#page2" (click)="handleClick(drawer)">Page 3.3</a>
+            <a mat-list-item href="#" (click)="handleClick(drawer)">Page 3.1</a>
+            <a mat-list-item href="#" (click)="handleClick(drawer)">Page 3.2</a>
+            <a mat-list-item href="#" (click)="handleClick(drawer)">Page 3.3</a>
           </mat-expansion-panel>
         </mat-accordion>
-
-        <!-- <a mat-list-item tree--sub-node href="#page2"  (click)="handleClick(drawer)">Page 3.1</a>
-              <a mat-list-item href="#page2"  (click)="handleClick(drawer)">Page 3.2</a> -->
-
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content class="main-content">
@@ -47,7 +43,7 @@
         <router-outlet></router-outlet>
       </div>
       <div *ngIf="!isAuth">
-        <login [callback]="setAuth"></login>
+        <login [hasSignined]="hasSignined"></login>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>

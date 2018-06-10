@@ -29,8 +29,6 @@ export class AppService {
   }
 
   isAuth(): boolean {
-    console.log('------------------ (): ', localStorage.getItem('currentUser'))
     return localStorage.getItem('currentUser') ? true : false;
-
   }
 }
