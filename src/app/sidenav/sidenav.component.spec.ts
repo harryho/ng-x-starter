@@ -3,8 +3,12 @@ import { fakeAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavComponent } from './sidenav.component';
 import { MaterialModule } from "../shared/material.module";
-// import { RouterModule , RouterOutlet} from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+
+import { LoginComponent } from 'src/app/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthenticationService } from 'src/app/_services';
+import { HttpClientModule } from '@angular/common/http';
 import { AppService } from 'src/app/app.service';
 
 describe('SidenavComponent', () => {
@@ -13,11 +17,13 @@ describe('SidenavComponent', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidenavComponent],
-      imports:[MaterialModule, BrowserAnimationsModule,RouterTestingModule, MaterialModule],
-      providers:[AppService]
+      declarations: [SidenavComponent, LoginComponent],
+      imports: [MaterialModule,
+        BrowserAnimationsModule, HttpClientModule,
+        RouterTestingModule, ReactiveFormsModule,  MaterialModule],
+      providers: [AppService, AuthenticationService],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(SidenavComponent);
     component = fixture.componentInstance;

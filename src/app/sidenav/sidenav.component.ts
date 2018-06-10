@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RouterModule } from '@angular/router';
 import { AppService } from 'src/app/app.service';
-// import { EventEmitter } from 'selenium-webdriver';
-import { Output } from '@angular/core/src/metadata/directives';
+import { MaterialModule } from "../shared/material.module";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sidenav',
@@ -17,16 +17,46 @@ export class SidenavComponent {
   private isHandset$: Observable<boolean>;
   isMobile :boolean;
 
-  // @Output() open: EventEmitter<boolean> = new EventEmitter();
-  // @Output() close: EventEmitter<boolean> = new EventEmitter();
+  panelOpenState: boolean = false;
+  private isAuth :boolean  ;
 
-  constructor(private breakpointObserver: BreakpointObserver, private appService: AppService) {
+  constructor(private breakpointObserver: BreakpointObserver,
+     private appService: AppService,    private router: Router) {
 
   }
 
   ngOnInit() {
     this.isHandset$ = this.appService.isHandset();
     this.appService.isHandset().subscribe((result)=>{ this.isMobile = result});
+    this.isAuth = this.appService.isAuth();
+  }
+
+  ngOnChanges() {
+
+    this.isAuth = this.appService.isAuth();
+  }
+
+  isAuthorized(_ : {isAuth: boolean}): void {
+    // console.log('------------------ (): ', localStorage.getItem('currentUser'))
+    this.isAuth = _.isAuth
+
+  }
+
+  isAuthenticated() {
+    return this.isAuth;
+  }
+
+  setAuth (a : boolean) {
+    this.isAuth = a;
+    console.log('------------------ (): ', localStorage.getItem('currentUser'))
+  }
+
+  logout(): void {
+    this.isAuth = false
+    localStorage.removeItem('currentUser');
+    this.router.navigate(['login']);
+    this.ngOnChanges();
+    window.document.location.reload()
   }
 
   handleClick(drawer) : void {

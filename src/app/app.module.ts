@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { Http, HttpModule, BrowserXhr } from "@angular/http";
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
 // import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { MaterialModule } from "./shared/material.module";
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -13,10 +17,22 @@ import { MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButt
 import { Page1Component } from './page1/page1.component';
 import { Page2Component } from './page2/page2.component';
 // import { ROUTES } from "./app.routes";
-import { RouterModule } from '@angular/router';
+
 import { AppService } from './app.service';
-import { ServiceWorkerModule } from '@angular/service-worker';
+
 import { environment } from '../environments/environment';
+// import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AuthGuard } from './_guard/auth.guard';
+import { LoginComponent } from './login/login.component';
+import { AuthenticationService } from './_services';
+import { UserService } from './_services';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from 'src/app/_services/jwt.interceptor';
+import { fakeBackendProvider } from 'src/app/_services/fake.backend.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 
 
 @NgModule({
@@ -25,19 +41,31 @@ import { environment } from '../environments/environment';
     SidenavComponent,
     DashboardComponent,
     Page1Component,
-    Page2Component
+    Page2Component,
+    LoginComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
-    // RouterModule.forRoot(ROUTES, { useHash: true }),
+    FormsModule,
+    HttpModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     MaterialModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
   ],
-  providers: [AppService],
+  providers: [
+    AppService,
+    AuthGuard,
+    AuthenticationService,
+    UserService,
+    fakeBackendProvider
+  ],
+  entryComponents:[LoginComponent],
   bootstrap: [AppComponent],
-  exports:[MaterialModule]
+  exports: [MaterialModule],
 })
 export class AppModule { }

@@ -1,0 +1,42 @@
+
+.login-page {
+  width:380px;
+  height:400px;
+  position: fixed;
+  top: 40%;
+  left: 45%;
+  margin-top: -100px;
+  margin-left: -100px;
+}
+
+.login-form {
+  display: flex;
+  flex-flow: column;
+  padding: 2rem 1rem 1rem 1rem;
+}
+
+.card-content {
+  height:100%;
+
+  .form-group {
+    margin: 5px;
+    margin-bottom: 10px;
+    height: 2.5rem;
+
+    .invalid-feedback {
+      color: red;
+      float:right;
+      padding-right: 1rem;
+    }
+    label {
+      padding: 1rem;
+      font-size: 1.1rem;
+    }
+
+    input {
+      height: 1.8rem;
+    }
+
+  }
+
+}

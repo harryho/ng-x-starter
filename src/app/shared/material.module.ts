@@ -32,7 +32,8 @@ import {
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatTreeModule
   //------------------
   // MatTableDataSource,
   // MatPaginator,
@@ -74,7 +75,8 @@ import {
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTreeModule
     // MatTableDataSource,
     // MatPaginator
   ],
@@ -110,7 +112,8 @@ import {
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTreeModule
     //------------------
     // MatDialog,
     // MatSnackBar,

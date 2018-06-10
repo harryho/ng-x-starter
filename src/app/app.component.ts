@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AppService } from 'src/app/app.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -8,4 +10,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  private isAuth :boolean  ;
+
+  constructor(private appService: AppService) {
+
+  }
+
+  ngOnInit() {
+    this.isAuth = this.appService.isAuth();
+  }
+
 }

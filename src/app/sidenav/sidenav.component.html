@@ -1,23 +1,54 @@
-<mat-sidenav-container class="sidenav-container" [hasBackdrop]="(isHandset$ | async) ? true : false">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
-    <mat-toolbar color="primary">Demo</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#dashboard"  (click)="handleClick(drawer)">Dashboard</a>
-      <a mat-list-item href="#page1"  (click)="handleClick(drawer)">Page 1</a>
-      <a mat-list-item href="#page2"  (click)="handleClick(drawer)">Page 2</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <!-- *ngIf="isHandset$ | async" -->
-  <mat-sidenav-content class="main-content">
-    <mat-toolbar class="top-toolbar" color="primary">
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>Ng X Starter</span>
-    </mat-toolbar>
-    <div class="page-container">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<div>
+  <mat-sidenav-container class="sidenav-container" [hasBackdrop]="(isHandset$ | async) ? true : false">
+
+    <mat-sidenav [hidden]="isAuthenticated()" #drawer class="sidenav" fixedInViewport="true && isAuth" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="isAuth && !(isHandset$ | async)">
+      <mat-toolbar color="primary">Demo
+        <div style="position:absolute; right: 0;">
+          <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" xPosition="after">
+            <button mat-menu-item (click)="logout()">Logout</button>
+            <button mat-menu-item href="#">Change Password</button>
+          </mat-menu>
+        </div>
+      </mat-toolbar>
+      <mat-nav-list>
+        <a mat-list-item routerLink="dashboard" (click)="handleClick(drawer)">Dashboard</a>
+        <a mat-list-item routerLink="page1" (click)="handleClick(drawer)">Page 1</a>
+        <a mat-list-item routerLink="page2" (click)="handleClick(drawer)">Page 2</a>
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Page 3
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <a mat-list-item href="#page2" (click)="handleClick(drawer)">Page 3.1</a>
+            <a mat-list-item href="#page2" (click)="handleClick(drawer)">Page 3.2</a>
+            <a mat-list-item href="#page2" (click)="handleClick(drawer)">Page 3.3</a>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <!-- <a mat-list-item tree--sub-node href="#page2"  (click)="handleClick(drawer)">Page 3.1</a>
+              <a mat-list-item href="#page2"  (click)="handleClick(drawer)">Page 3.2</a> -->
+
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="main-content">
+      <mat-toolbar  *ngIf="isAuth"  class="top-toolbar" color="primary">
+        <button *ngIf="isAuth"   type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <span>Ng X Starter</span>
+      </mat-toolbar>
+      <div *ngIf="isAuth" class="page-container">
+        <router-outlet></router-outlet>
+      </div>
+      <div *ngIf="!isAuth">
+        <login [callback]="setAuth"></login>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

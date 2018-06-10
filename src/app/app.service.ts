@@ -25,6 +25,12 @@ export class AppService {
 
   isHandset(): Observable<boolean> {
     return this.breakpointObserver.observe(Breakpoints.Handset)
-      .pipe( map(result => result.matches ))
+      .pipe(map(result => result.matches))
+  }
+
+  isAuth(): boolean {
+    console.log('------------------ (): ', localStorage.getItem('currentUser'))
+    return localStorage.getItem('currentUser') ? true : false;
+
   }
 }
