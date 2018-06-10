@@ -7,18 +7,7 @@ import { AuthGuard } from 'src/app/_guard/auth.guard';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  // { path: '',
-  // //  pathMatch:"prefix",
-  //  children: [
-  //    { path: "home", component: DashboardComponent ,   canActivate: [AuthGuard]},
-  //  { path: "dashboard",pathMatch:"full", component: DashboardComponent ,   canActivate: [AuthGuard]},
-  //  { path: "page1", component: Page1Component , canActivate: [AuthGuard],},
-  //  { path: "page2", component: Page2Component , canActivate: [AuthGuard],},
-  //  { path: "**", redirectTo: 'page2' }],
-  //  canActivate: [AuthGuard]
-  // },
   { path: "login", component: LoginComponent },
-  // { path: "home", component: DashboardComponent ,   canActivate: [AuthGuard]},
   { path: "dashboard",component: DashboardComponent ,   canActivate: [AuthGuard]},
   { path: "page1", component: Page1Component , canActivate: [AuthGuard],},
   { path: "page2", component: Page2Component , canActivate: [AuthGuard],},
