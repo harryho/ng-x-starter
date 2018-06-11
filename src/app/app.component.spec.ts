@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { MaterialModule } from "./shared/material.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from 'src/app/login/login.component';
+import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {

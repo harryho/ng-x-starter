@@ -2,8 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MaterialModule } from "../shared/material.module";
 import { LoginComponent } from './login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AppService } from 'src/app/app.service';
-import { AuthenticationService } from 'src/app/_services';
+import { AppService } from '../app.service';
+import { AuthenticationService } from '../_services';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 

@@ -5,11 +5,11 @@ import { SidenavComponent } from './sidenav.component';
 import { MaterialModule } from "../shared/material.module";
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { LoginComponent } from 'src/app/login/login.component';
+import { LoginComponent } from '../login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthenticationService } from 'src/app/_services';
+import { AuthenticationService } from '../_services';
 import { HttpClientModule } from '@angular/common/http';
-import { AppService } from 'src/app/app.service';
+import { AppService } from '../app.service';
 
 describe('SidenavComponent', () => {
   let component: SidenavComponent;

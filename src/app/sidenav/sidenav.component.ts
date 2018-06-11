@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RouterModule } from '@angular/router';
-import { AppService } from 'src/app/app.service';
+import { AppService } from '../app.service';
 import { MaterialModule } from "../shared/material.module";
 import { Router } from '@angular/router';
 
