@@ -14,11 +14,11 @@ import { Router } from '@angular/router';
 })
 export class SidenavComponent {
 
-  private isHandset$: Observable<boolean>;
+  isHandset$: Observable<boolean>;
   isMobile :boolean;
 
   panelOpenState: boolean = false;
-  private isAuth :boolean  ;
+  isAuth :boolean  ;
 
   constructor(private breakpointObserver: BreakpointObserver,
      private appService: AppService,    private router: Router) {

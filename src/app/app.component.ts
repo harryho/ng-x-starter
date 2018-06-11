@@ -11,14 +11,11 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   title = 'app';
 
-  private isAuth :boolean  ;
-
   constructor(private appService: AppService) {
 
   }
 
   ngOnInit() {
-    this.isAuth = this.appService.isAuth();
   }
 
 }
