@@ -4,7 +4,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Features
 
-* 
+* Angular 6 
+* Angular Material 6
+* PWA
+* Oauth + Login
 
 ## Development server
 
